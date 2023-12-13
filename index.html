@@ -1,0 +1,36 @@
+<script>
+                function getBlocks(dist) {
+                    let postObj = {district: dist, get_blocks: "true"}
+                    
+                    let post = JSON.stringify(postObj)
+                    const url = "/action/"
+                    let xhr = new XMLHttpRequest()
+                    xhr.open('POST', url, true)
+                    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                    xhr.send(post);
+                    xhr.onload = function () { 
+                        
+                        document.getElementById("village").innerHTML=''
+                        document.getElementById("village").innerHTML=xhr.responseText 
+                        if(xhr.status === 201) {
+                            console.log("Post successfully created!") 
+                        }
+                    } 
+                    
+                    let postObj2 = {district: dist, get_ps: "true"}
+                    
+                    let post2 = JSON.stringify(postObj2) 
+                    let xhr2 = new XMLHttpRequest()
+                    xhr2.open('POST', url, true)
+                    xhr2.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                    xhr2.send(post2);
+                    xhr2.onload = function () { 
+                        
+                        document.getElementById("police_station").innerHTML=''
+                        document.getElementById("police_station").innerHTML=xhr2.responseText 
+                        if(xhr2.status === 201) {
+                            console.log("Post successfully created!") 
+                        }
+                    } 
+                }
+            </script>
